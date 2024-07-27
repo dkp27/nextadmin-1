@@ -1,0 +1,43 @@
+.container {
+    background-color: var(--bgSoft);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.label{
+    display: block;
+}
+
+.form input,.form select{
+    padding: 10px;
+    color: var(--text);
+    background-color: var(--bg);
+    border-radius: 5px;
+    margin-bottom: 30px;
+    border: #2e374a;
+}
+.form input,.form select {
+    width: 95%;
+}
+
+.has{
+    width: 33%;
+}
+
+.form button{
+    width: 100%;
+    padding: 20px;
+    background-color: teal;
+    color: #ffffff;
+    border: none;
+    font-size: large;
+    border-radius: 100px;
+    cursor: pointer;
+}

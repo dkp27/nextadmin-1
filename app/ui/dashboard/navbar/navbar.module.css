@@ -11,6 +11,8 @@
     color: var(--textSoft);
     font-weight: bold;
     text-transform: capitalize;
+    margin-right: auto;
+    gap: 10px;
 }
 
 .menu{
@@ -19,11 +21,29 @@
     gap: 20px;
 }
 
+.fine{
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.fine:hover{
+    background-color: #7A70BA;
+}
+
+.icons{
+    gap: 20px;
+    display: flex;
+}
+
 .search{
     display: flex;
     align-items: center;
     gap: 10px;
-    background-color: #2e374a;
+    background-color: var(--bg);
     padding: 10px;
     border-radius: 10px;
     width: max-content;

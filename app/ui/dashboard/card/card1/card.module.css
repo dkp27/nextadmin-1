@@ -9,7 +9,7 @@
 }
 
 .container:hover{
-    background-color: #2e374a;
+    background-color: #7A70BA;
 }
 
 .texts{
@@ -18,18 +18,13 @@
     gap: 20px;
 }
 
+.icons{
+    color:aqua;
+}
+
 .number{
     font-size: 20px;
     font-weight: 500;
-}
-
-.detail{
-    font-size: 20px;
-    font-weight: 300;
-}
-
-.positive{
-    color: lime;
 }
 
 .negative{

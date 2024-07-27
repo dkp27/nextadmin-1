@@ -13,40 +13,48 @@ import {
 
 const data = [
   {
+    name: "Sun",
+    invoice: 0,
+    pending: 0,
+    purchase: 0,
+  },
+  {
     name: "Mon",
-    visit: 4000,
-    click: 2400,
+    invoice: 3000,
+    pending: 7000,
+    purchase: 2000,
   },
   {
     name: "Tue",
-    visit: 3000,
-    click: 1398,
+    invoice: 6000,
+    pending: 5000,
+    purchase: 2000,
   },
   {
     name: "Wed",
-    visit: 2000,
-    click: 9800,
+    invoice: 8000,
+    pending: 2400,
+    purchase: 2000,
   },
   {
-    name: "Thu",
-    visit: 2780,
-    click: 3908,
+    name: "Thus",
+    invoice: 3000,
+    pending: 2000,
+    purchase: 2000,
   },
   {
     name: "Fri",
-    visit: 1890,
-    click: 4800,
+    invoice: 5000,
+    pending: 3000,
+    purchase: 2000,
   },
   {
     name: "Sat",
-    visit: 2390,
-    click: 3800,
+    invoice: 1000,
+    pending: 4000,
+    purchase: 2000,
   },
-  {
-    name: "Sun",
-    visit: 3490,
-    click: 4300,
-  },
+  
 ];
  
 const Chart = () => {
@@ -66,15 +74,16 @@ const Chart = () => {
           }}>
           <XAxis dataKey="name" />
           <YAxis />
-          <Tooltip contentStyle={{background:"#151c2c", border:"none"}} />
+          <Tooltip contentStyle={{ background: "#151c2c", border: "none" }} />
           <Legend />
           <Line
             type="monotone"
-            dataKey="visit"
-            stroke="#8884d8"
+            dataKey="invoice"
+            stroke="SlateBlue"
             activeDot={{ r: 8 }}
           />
-          <Line type="monotone" dataKey="click" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="pending" stroke="yellow" />
+          <Line type="monotone" dataKey="purchase" stroke="lime" />
         </LineChart>
       </ResponsiveContainer>
     </div>

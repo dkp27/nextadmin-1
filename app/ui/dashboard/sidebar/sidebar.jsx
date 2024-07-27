@@ -1,107 +1,198 @@
-import React from 'react'
-import styles from "./sidebar.module.css"
-import { MdAnalytics, MdAttachMoney, MdDashboard, MdHelpCenter, MdLogout, MdOutlineSettings, MdPeople, MdShoppingBag, MdSupervisedUserCircle, MdWork } from "react-icons/md"
-import MenuLink from './menuLink/menuLink';
-import Image from 'next/image';
-import { auth, signOut } from '@/app/auth';
+import React, { useEffect, useState } from "react";
+import styles from "./sidebar.module.css";
+import {
+  MdAnalytics,
+  MdArrowDownward,
+  MdArrowUpward,
+  MdAttachMoney,
+  MdDashboard,
+  MdHelpCenter,
+  MdKeyboardArrowDown,
+  MdKeyboardArrowUp,
+  MdLogout,
+  MdOutlineSettings,
+  MdPeople,
+  MdShoppingBag,
+  MdSupervisedUserCircle,
+  MdWork,
+} from "react-icons/md";
+import MenuLink from "./menuLink/menuLink";
+import Image from "next/image";
 
 const menuItems = [
   {
-    title: "Pages",
+    title: "DashBoard",
     list: [
       {
         title: "Dashboard",
         path: "/dashboard",
         icon: <MdDashboard />,
       },
+    ],
+  },
+  {
+    title: "Set Up",
+    list: [
       {
-        title: "Users",
-        path: "/dashboard/users",
+        title: "Manage Financial Year",
+        path: "/dashboard/manageFinancialYears",
         icon: <MdSupervisedUserCircle />,
       },
       {
-        title: "Products",
-        path: "/dashboard/products",
+        title: "Company Setup",
+        path: "/dashboard/companySetups",
         icon: <MdShoppingBag />,
       },
       {
-        title: "Transactions",
-        path: "/dashboard/transactions",
+        title: "Set Purchase GST %",
+        path: "/dashboard/setPuchaseGSTs",
+        icon: <MdAttachMoney />,
+      },
+      {
+        title: "Openning Stock Entry",
+        path: "/dashboard/OpenningStockEntrys",
         icon: <MdAttachMoney />,
       },
     ],
   },
   {
-    title: "Analytics",
+    title: "Masters",
     list: [
       {
-        title: "Revenue",
-        path: "/dashboard/revenue",
+        title: "Sales Man",
+        path: "/dashboard/salesMans",
         icon: <MdWork />,
       },
       {
-        title: "Reports",
-        path: "/dashboard/reports",
+        title: "Customer Master",
+        path: "/dashboard/customerMasters",
         icon: <MdAnalytics />,
       },
       {
-        title: "Teams",
-        path: "/dashboard/teams",
-        icon: <MdPeople />,
+        title: "Supplier Master",
+        path: "/dashboard/supplierMasters",
+        icon: <MdAnalytics />,
+      },
+      {
+        title: "Item Master",
+        path: "/dashboard/itemMasters",
+        icon: <MdAnalytics />,
       },
     ],
   },
   {
-    title: "Users",
+    title: "Transactions",
     list: [
       {
-        title: "Settings",
-        path: "/dashboard/settings",
+        title: "Purchase Product",
+        path: "/dashboard/purchageProducts",
         icon: <MdOutlineSettings />,
       },
       {
-        title: "Help",
-        path: "/dashboard/help",
+        title: "Purchage List",
+        path: "/dashboard/purchaseLists",
+        icon: <MdHelpCenter />,
+      },
+      {
+        title: "Sales Invice",
+        path: "/dashboard/salesInvices",
+        icon: <MdHelpCenter />,
+      },
+      {
+        title: "Sales Invice List",
+        path: "/dashboard/salesInviceLists",
+        icon: <MdHelpCenter />,
+      },
+      {
+        title: "Stock Reports",
+        path: "/dashboard/stockRepords",
+        icon: <MdHelpCenter />,
+      },
+    ],
+  },
+  {
+    title: "Reports",
+    list: [
+      {
+        title: "Daily Sales Summary",
+        path: "/dashboard/dailySalesSummarys",
+        icon: <MdOutlineSettings />,
+      },
+      {
+        title: "GST Tax % Wise Sales",
+        path: "/dashboard/gstTaxWiseSales",
+        icon: <MdHelpCenter />,
+      },
+      {
+        title: "Daily Purchase Summary",
+        path: "/dashboard/dailyPurchaseSummarys",
+        icon: <MdHelpCenter />,
+      },
+      {
+        title: "GST Tax % Wise Purchase",
+        path: "/dashboard/gstTaxWisePurchases",
         icon: <MdHelpCenter />,
       },
     ],
   },
 ];
 
+const Sidebar = () => {
+  const [collapsedCategories, setCollapsedCategories] = useState([]);
 
-const sidebar = async () => {
- 
-  const {user} = await auth();
+  const toggleCategory = (title) => {
+    if (collapsedCategories.includes(title)) {  
+      setCollapsedCategories(
+        collapsedCategories.filter((item) => item !== title)
+      );
+    } else {
+      setCollapsedCategories([...collapsedCategories, title]);
+    }
+  };
+
+  useEffect(() => {
+    setCollapsedCategories(menuItems.map((cat) => cat.title));
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.user}>
         <Image
           className={styles.userImage}
-          src={user.img || "/noavatar.png"}
+          src="/noavatar.png"
           alt=""
           width="50"
           height="50"
         />
         <div className={styles.userDetail}>
-          <span className={styles.username}>{user.username}</span>
+          <span className={styles.username}>daku</span>
           <span className={styles.userTitle}>Engineer</span>
         </div>
       </div>
       <ul className={styles.list}>
         {menuItems.map((cat) => (
           <li key={cat.title}>
-            <span className={styles.cat}>{cat.title}</span>
-            {cat.list.map((item) => (
-              <MenuLink item={item} key={item.title} />
-            ))}
+            <div
+              className={styles.cat}
+              onClick={() => toggleCategory(cat.title)}>
+              <span>{cat.title}</span>
+              {collapsedCategories.includes(cat.title) ? (
+                <MdKeyboardArrowDown className={styles.down} />
+              ) : (
+                <MdKeyboardArrowUp className={styles.down} />
+              )}
+            </div>
+            {!collapsedCategories.includes(cat.title) && (
+              <ul>
+                {cat.list.map((item) => (
+                  <MenuLink item={item} key={item.title} />
+                ))}
+              </ul>
+            )}
           </li>
         ))}
       </ul>
-      <form
-        action={async () => {
-          "use server";
-          await signOut();
-        }}>
+      <form>
         <button className={styles.logout}>
           <MdLogout />
           Logout
@@ -109,6 +200,6 @@ const sidebar = async () => {
       </form>
     </div>
   );
-}
+};
 
-export default sidebar
+export default Sidebar;

@@ -1,0 +1,40 @@
+.container{
+    background-color: var(--bgSoft);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+    widows: 100%;
+}
+
+.container:hover{
+    background-color: #7A70BA;
+}
+
+.icons{
+    color: yellow;
+}
+
+.texts{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.number{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.negative{
+    color: red;
+}
+
+.container .texts{
+    transition: transform.3s ease-out;
+}
+
+.container:hover .texts{
+    transform: translateY(-0.5rem);
+}
