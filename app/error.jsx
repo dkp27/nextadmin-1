@@ -5,7 +5,7 @@ import React from 'react'
 const Error = () => {
   return (
     <div>
-      ddw
+      Error
     </div>
   )
 }

@@ -15,6 +15,7 @@
     "mongoose": "^8.2.3",
     "next": "14.0.1",
     "next-auth": "^5.0.0-beta.3",
+    "nextadmingithubstarter": "file:",
     "react": "18",
     "react-dom": "18",
     "react-icons": "^4.11.0",
